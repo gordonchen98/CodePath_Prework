@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        billAmountTextField.keyboardType = UIKeyboardType.numberPad
+        billAmountTextField.keyboardType = UIKeyboardType.decimalPad
         billAmountTextField.becomeFirstResponder()
         billAmountTextField.clearButtonMode = .whileEditing
         billAmountTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // Dynamic change with any input change with textfield
     @objc func textChanged() {
         let percentage = Double(rate.text!) ?? 0 > 100 ? 100 : Double(rate.text!) ?? 0 < 0 ? 0 : Double(rate.text!) ?? 0
         rate.text = String(format: "%.0f", percentage)
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         totalLabel.text = String(format: "$%.2f", total)
     }
     
+    // For slider
     @IBAction func sliderTip(_ sender: Any) {
         let bill = Double(billAmountTextField.text!) ?? 0
         let percentage = Double(slider.value)
@@ -54,6 +56,7 @@ class ViewController: UIViewController {
         totalLabel.text = String(format: "$%.2f", total)
     }
     
+    // For segment
     @IBAction func calculateTip(_ sender: Any) {
         let bill = Double(billAmountTextField.text!) ?? 0
         let tipPercentages = [0.15, 0.18, 0.2]
