@@ -19,11 +19,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var split: UILabel!
     
-    func roundToPlaces(_ value:Double, _ places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return round(value * divisor) / divisor
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
