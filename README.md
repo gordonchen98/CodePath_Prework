@@ -26,6 +26,8 @@ The following **additional** features are implemented:
 - [x] Split feature to divide the bill between a group
 - [x] Improved the UI
 - [x] Added logo as an app icon and changed the launch screen
+- [x] Added a default tip percentage (when changed in settings, it will reflect in calculator)
+- [x] Added dark mode (can change default) 
 
 ## Video Walkthrough
 
