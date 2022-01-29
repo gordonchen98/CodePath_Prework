@@ -59,9 +59,9 @@ class ViewController: UIViewController {
     let total = bill + tip
     
     slider.setValue(Float(percentage / 100), animated: true)
-    tipAmountLabel.text = String(format: "$%.2f", tip)
-    totalLabel.text = String(format: "$%.2f", total)
-    split.text = String(format: "$%.2f", total / stepper.value)
+    tipAmountLabel.text = localCurrency(amount: tip)
+    totalLabel.text = localCurrency(amount: total)
+    split.text = localCurrency(amount: total / stepper.value)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -93,9 +93,9 @@ class ViewController: UIViewController {
     let total = bill + tip
     
     rate.text = String(format: "%.0f", percentage * 100)
-    tipAmountLabel.text = String(format: "$%.2f", tip)
-    totalLabel.text = String(format: "$%.2f", total)
-    split.text = String(format: "$%.2f", total / stepper.value)
+    tipAmountLabel.text = localCurrency(amount: tip)
+    totalLabel.text = localCurrency(amount: total)
+    split.text = localCurrency(amount: total / stepper.value)
   }
   
   // for rate segment
@@ -109,11 +109,12 @@ class ViewController: UIViewController {
     
     slider.setValue( Float(tipPercentages[tipControl.selectedSegmentIndex]), animated: true)
     rate.text = String(format: "%.0f", tipPercentages[tipControl.selectedSegmentIndex] * 100)
-    tipAmountLabel.text = String(format: "$%.2f", tip)
-    totalLabel.text = String(format: "$%.2f", total)
-    split.text = String(format: "$%.2f", total / stepper.value)
+    tipAmountLabel.text = localCurrency(amount: tip)
+    totalLabel.text = localCurrency(amount: total)
+    split.text = localCurrency(amount: total / stepper.value)
   }
   
+  // for split stepper
   @IBAction func UIStepper(_ sender: UIStepper) {
     splitAmount.text = Int(sender.value).description
     
@@ -121,7 +122,13 @@ class ViewController: UIViewController {
     let percentage = Double(slider.value)
     let tip = bill * percentage
     let total = bill + tip
-    split.text = String(format: "$%.2f", total / stepper.value)
+    split.text = localCurrency(amount: total / stepper.value)
   }
   
+  private func localCurrency(amount: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.locale = Locale.current
+    return formatter.string(from: NSNumber(value: amount)) ?? "Error"
+  }
 }
