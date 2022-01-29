@@ -34,6 +34,14 @@ class ViewController: UIViewController {
         rate.keyboardType = UIKeyboardType.numberPad
         rate.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         rate.clearButtonMode = .whileEditing
+        
+        // change tip amount
+        let tipPercentages = [0.15, 0.18, 0.2]
+        let tipPercentage = defaults.double(forKey: "tipPercentage")
+        let index = tipPercentages.firstIndex(where: {$0 == tipPercentage})
+        tipControl.selectedSegmentIndex = index ?? 0
+        slider.setValue(Float(tipPercentage), animated: true)
+        rate.text = String(format: "%.0f", tipPercentage * 100)
     }
     
     // dynamic change with any input change with textfield
@@ -57,15 +65,6 @@ class ViewController: UIViewController {
         
         // change theme
         overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: defaults.integer(forKey: "theme")) ?? .unspecified
-        
-        // change tip amount
-        let tipPercentages = [0.15, 0.18, 0.2]
-        let tipPercentage = defaults.double(forKey: "tipPercentage")
-        let index = tipPercentages.firstIndex(where: {$0 == tipPercentage})
-        tipControl.selectedSegmentIndex = index ?? 0
-        slider.setValue(Float(tipPercentage), animated: true)
-        rate.text = String(format: "%.0f", tipPercentage * 100)
-        textChanged()
     }
     
     // for slider
