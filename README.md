@@ -4,7 +4,7 @@
 
 Submitted by: **Gordon Chen**
 
-Time spent: **15** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -36,10 +36,6 @@ Here's a walkthrough of implemented user stories:
 <img src='https://i.imgur.com/S6gKfxE.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 GIF created with [ezgif.com](https://ezgif.com/video-to-gif).
-
-## Notes
-
-Describe any challenges encountered while building the app.
 
 ## License
 
