@@ -11,6 +11,8 @@ class SettingsViewController: UIViewController {
   
   @IBOutlet weak var themeControl: UISegmentedControl!
   @IBOutlet weak var tipControl: UISegmentedControl!
+  @IBOutlet weak var split: UILabel!
+  @IBOutlet weak var stepper: UIStepper!
   
   // Set Default
   let defaults = UserDefaults.standard
@@ -31,6 +33,13 @@ class SettingsViewController: UIViewController {
     let tipPercentage = defaults.double(forKey: "tipPercentage")
     let index = tipPercentages.firstIndex(where: {$0 == tipPercentage})
     tipControl.selectedSegmentIndex = index ?? 0
+    
+    // default split
+    let step = defaults.integer(forKey: "step")
+    stepper.minimumValue = 1
+    stepper.autorepeat = true
+    stepper.value = Double(step)
+    split.text = String(Int(stepper.value))
   }
   
   @IBAction func setTheme(_ sender: Any) {
@@ -44,6 +53,13 @@ class SettingsViewController: UIViewController {
     let tipPercentages = [0.15, 0.18, 0.2]
     let tip = tipPercentages[tipControl.selectedSegmentIndex]
     defaults.set(tip, forKey: "tipPercentage")
+    defaults.synchronize()
+  }
+  
+  @IBAction func UIStepper(_ sender: UIStepper) {
+    let step = Int(sender.value).description
+    split.text = String(step)
+    defaults.set(step, forKey: "step")
     defaults.synchronize()
   }
   
