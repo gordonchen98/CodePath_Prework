@@ -19,21 +19,26 @@ class ViewController: UIViewController {
   @IBOutlet weak var splitAmount: UILabel!
   @IBOutlet weak var stepper: UIStepper!
   
-  // Set Default
+  // set Default
   let defaults = UserDefaults.standard
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Sets the title in the Navigation Bar
+    // sets the title in the Navigation Bar
     self.title = "Tip Calculator"
     
+    // basic setup
     billAmountTextField.keyboardType = UIKeyboardType.decimalPad
     billAmountTextField.becomeFirstResponder()
     billAmountTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
     rate.keyboardType = UIKeyboardType.numberPad
     rate.addTarget(self, action: #selector(textChanged), for: .editingChanged)
     rate.clearButtonMode = .whileEditing
+    
+    // restore billAmount
+    let bill = defaults.integer(forKey: "bill")
+    billAmountTextField.text = bill > 0 ? String(defaults.integer(forKey: "bill")) : ""
     
     // change tip amount
     let tipPercentages = [0.15, 0.18, 0.2]
@@ -115,6 +120,9 @@ class ViewController: UIViewController {
   private func calculate(bill: Double, percentage: Double, step: Int) {
     let tip = bill * percentage
     let total = bill + tip
+    
+    defaults.set(Int(bill), forKey: "bill")
+    defaults.synchronize()
     
     slider.setValue(Float(percentage), animated: true)
     rate.text = String(format: "%.0f", percentage * 100)
