@@ -53,15 +53,8 @@ class ViewController: UIViewController {
   // dynamic change with any input change with textfield
   @objc func textChanged() {
     let percentage = Double(rate.text!) ?? 0 > 100 ? 100 : Double(rate.text!) ?? 0 < 0 ? 0 : Double(rate.text!) ?? 0
-    rate.text = String(format: "%.0f", percentage)
-    let bill = Double(billAmountTextField.text!) ?? 0
-    let tip = bill * percentage / 100
-    let total = bill + tip
-    
-    slider.setValue(Float(percentage / 100), animated: true)
-    tipAmountLabel.text = localCurrency(amount: tip)
-    totalLabel.text = localCurrency(amount: total)
-    split.text = localCurrency(amount: total / stepper.value)
+    calculate(bill: Double(billAmountTextField.text!) ?? 0,
+              percentage: percentage / 100, step: Int(stepper.value))
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -83,52 +76,50 @@ class ViewController: UIViewController {
     stepper.autorepeat = true
     stepper.value = Double(defaults.integer(forKey: "step"))
     splitAmount.text = String(Int(stepper.value))
+    textChanged()
   }
   
   // for slider
   @IBAction func sliderTip(_ sender: Any) {
-    let bill = Double(billAmountTextField.text!) ?? 0
-    let percentage = Double(Int(slider.value * 100)) / 100
-    let tip = bill * percentage
-    let total = bill + tip
-    
-    rate.text = String(format: "%.0f", percentage * 100)
-    tipAmountLabel.text = localCurrency(amount: tip)
-    totalLabel.text = localCurrency(amount: total)
-    split.text = localCurrency(amount: total / stepper.value)
+    calculate(bill: Double(billAmountTextField.text!) ?? 0,
+              percentage: Double(Int(slider.value * 100)) / 100,
+              step: Int(stepper.value))
   }
   
   // for rate segment
   @IBAction func calculateTip(_ sender: Any) {
     let tipPercentages = [0.15, 0.18, 0.2]
-    
-    let bill = Double(billAmountTextField.text!) ?? 0
-    let tip = bill *
-      tipPercentages[tipControl.selectedSegmentIndex]
-    let total = bill + tip
-    
-    slider.setValue( Float(tipPercentages[tipControl.selectedSegmentIndex]), animated: true)
-    rate.text = String(format: "%.0f", tipPercentages[tipControl.selectedSegmentIndex] * 100)
-    tipAmountLabel.text = localCurrency(amount: tip)
-    totalLabel.text = localCurrency(amount: total)
-    split.text = localCurrency(amount: total / stepper.value)
+    calculate(bill: Double(billAmountTextField.text!) ?? 0,
+              percentage: tipPercentages[tipControl.selectedSegmentIndex],
+              step: Int(stepper.value))
   }
   
   // for split stepper
   @IBAction func UIStepper(_ sender: UIStepper) {
     splitAmount.text = Int(sender.value).description
     
-    let bill = Double(billAmountTextField.text!) ?? 0
-    let percentage = Double(slider.value)
-    let tip = bill * percentage
-    let total = bill + tip
-    split.text = localCurrency(amount: total / stepper.value)
+    calculate(bill: Double(billAmountTextField.text!) ?? 0,
+              percentage: Double(slider.value),
+              step: Int(stepper.value))
   }
   
+  // locale currency
   private func localCurrency(amount: Double) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
     formatter.locale = Locale.current
     return formatter.string(from: NSNumber(value: amount)) ?? "Error"
+  }
+  
+  // display calculations
+  private func calculate(bill: Double, percentage: Double, step: Int) {
+    let tip = bill * percentage
+    let total = bill + tip
+    
+    slider.setValue(Float(percentage), animated: true)
+    rate.text = String(format: "%.0f", percentage * 100)
+    tipAmountLabel.text = localCurrency(amount: tip)
+    totalLabel.text = localCurrency(amount: total)
+    split.text = localCurrency(amount: total / Double(step))
   }
 }
