@@ -11,13 +11,18 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var billAmountTextField: UITextField!
   @IBOutlet weak var tipAmountLabel: UILabel!
+  @IBOutlet weak var tip: UILabel!
   @IBOutlet weak var tipControl: UISegmentedControl!
   @IBOutlet weak var totalLabel: UILabel!
+  @IBOutlet weak var total: UILabel!
+  @IBOutlet weak var each: UILabel!
   @IBOutlet weak var slider: UISlider!
   @IBOutlet weak var rate: UITextField!
-  @IBOutlet weak var split: UILabel!
+  @IBOutlet weak var average: UILabel!
   @IBOutlet weak var splitAmount: UILabel!
   @IBOutlet weak var stepper: UIStepper!
+  @IBOutlet weak var percent: UILabel!
+  @IBOutlet weak var split: UILabel!
   
   // set Default
   let defaults = UserDefaults.standard
@@ -60,6 +65,7 @@ class ViewController: UIViewController {
     let percentage = Double(rate.text!) ?? 0 > 100 ? 100 : Double(rate.text!) ?? 0 < 0 ? 0 : Double(rate.text!) ?? 0
     calculate(bill: Double(billAmountTextField.text!) ?? 0,
               percentage: percentage / 100, step: Int(stepper.value))
+    onTap()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +90,42 @@ class ViewController: UIViewController {
     textChanged()
   }
   
+  private func onTap() {
+    if (billAmountTextField.text == "") {
+      UIView.animate(withDuration: 1, animations: {
+        self.tipAmountLabel.isHidden = true
+        self.tip.isHidden = true
+        self.tipControl.isHidden = true
+        self.totalLabel.isHidden = true
+        self.total.isHidden = true
+        self.each.isHidden = true
+        self.slider.isHidden = true
+        self.rate.isHidden = true
+        self.average.isHidden = true
+        self.splitAmount.isHidden = true
+        self.stepper.isHidden = true
+        self.percent.isHidden = true
+        self.split.isHidden = true
+      })
+    } else {
+      UIView.animate(withDuration: 1, animations: {
+        self.tipAmountLabel.isHidden = false
+        self.tip.isHidden = false
+        self.tipControl.isHidden = false
+        self.totalLabel.isHidden = false
+        self.total.isHidden = false
+        self.each.isHidden = false
+        self.slider.isHidden = false
+        self.rate.isHidden = false
+        self.average.isHidden = false
+        self.splitAmount.isHidden = false
+        self.stepper.isHidden = false
+        self.percent.isHidden = false
+        self.split.isHidden = false
+      })
+    }
+  }
+  
   // for slider
   @IBAction func sliderTip(_ sender: Any) {
     calculate(bill: Double(billAmountTextField.text!) ?? 0,
@@ -92,7 +134,7 @@ class ViewController: UIViewController {
   }
   
   // for rate segment
-  @IBAction func calculateTip(_ sender: Any) {
+  @IBAction func segmentTip(_ sender: Any) {
     let tipPercentages = [0.15, 0.18, 0.2]
     calculate(bill: Double(billAmountTextField.text!) ?? 0,
               percentage: tipPercentages[tipControl.selectedSegmentIndex],
@@ -128,6 +170,6 @@ class ViewController: UIViewController {
     rate.text = String(format: "%.0f", percentage * 100)
     tipAmountLabel.text = localCurrency(amount: tip)
     totalLabel.text = localCurrency(amount: total)
-    split.text = localCurrency(amount: total / Double(step))
+    average.text = localCurrency(amount: total / Double(step))
   }
 }

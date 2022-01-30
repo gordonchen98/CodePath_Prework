@@ -46,7 +46,7 @@
                                     <segment title="20%"/>
                                 </segments>
                                 <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="5Q9-Dd-9l5"/>
+                                    <action selector="segmentTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="n7i-Ss-mbL"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhB-D4-lez">
@@ -129,14 +129,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="average" destination="Eyx-DS-Sou" id="Qfc-5F-3pc"/>
                         <outlet property="billAmountTextField" destination="Cho-4W-8A2" id="Lq2-rM-Y2S"/>
+                        <outlet property="each" destination="mwT-MB-t97" id="ESp-92-eCs"/>
+                        <outlet property="percent" destination="6N2-da-W8s" id="uxa-lT-zGR"/>
                         <outlet property="rate" destination="b9l-eX-3WB" id="p27-wf-xMh"/>
                         <outlet property="slider" destination="rXt-G4-cb8" id="1Dc-6x-Ita"/>
-                        <outlet property="split" destination="Eyx-DS-Sou" id="Hmd-wM-0C2"/>
+                        <outlet property="split" destination="eU9-AD-3SY" id="W71-ao-Hdq"/>
                         <outlet property="splitAmount" destination="5Wf-UM-7aA" id="b8R-gc-OWy"/>
                         <outlet property="stepper" destination="jwH-Xk-jaq" id="jyj-Ug-HqU"/>
+                        <outlet property="tip" destination="sSC-T2-0BE" id="KIX-Mq-YOA"/>
                         <outlet property="tipAmountLabel" destination="FIH-qL-nsQ" id="3zL-Le-msF"/>
                         <outlet property="tipControl" destination="Y01-NN-4Ym" id="F3v-wz-uM0"/>
+                        <outlet property="total" destination="e0b-nm-anv" id="1tG-0W-23R"/>
                         <outlet property="totalLabel" destination="JhB-D4-lez" id="X7G-s9-XlP"/>
                     </connections>
                 </viewController>
