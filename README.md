@@ -4,7 +4,7 @@
 
 Submitted by: **Gordon Chen**
 
-Time spent: **10** hours spent in total
+Time spent: **15** hours spent in total
 
 ## User Stories
 
@@ -15,9 +15,9 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 
-* [ ] UI animations
-* [ ] Remembering the bill amount across app restarts (if <10mins)
-* [ ] Using locale-specific currency and currency thousands separators.
+* [x] UI animations
+* [x] Remembering the bill amount across app restarts (if <10mins)
+* [x] Using locale-specific currency and currency thousands separators.
 * [x] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
 The following **additional** features are implemented:
@@ -31,9 +31,14 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
-
-<img src='https://i.imgur.com/S6gKfxE.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+Here's a walkthrough of implemented user stories: <br/>
+1. Demostration of calculating tip (change in tip amount/split method), changing of the setting (default theme/tip/split), ui animation when no bill inserted, restart bill amount restoration
+<br/>
+<img src='https://i.imgur.com/W7RdFFj.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+<br/>
+2. Demostration of change in locale currency
+<br/>
+<img src='https://i.imgur.com/t4ma3VV.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 GIF created with [ezgif.com](https://ezgif.com/video-to-gif).
 
