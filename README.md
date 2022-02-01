@@ -6,6 +6,8 @@ Submitted by: **Gordon Chen**
 
 Time spent: **15** hours spent in total
 
+Accepted into CodePath Spring '22
+
 ## User Stories
 
 The following **required** functionality is complete:
@@ -32,13 +34,8 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories: <br/>
-1. Demostration of calculating tip (change in tip amount/split method), changing of the setting (default theme/tip/split), ui animation when no bill inserted, restart bill amount restoration
-<br/>
-<img src='https://i.imgur.com/GUmum4R.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
-<br/>
-2. Demostration of change in locale currency
-<br/>
-<img src='https://i.imgur.com/ot82Spb.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+1. Demostration of calculating tip (change in tip amount/split method), changing of the setting (default theme/tip/split), ui animation when no bill inserted, restart bill amount restoration <br/> <img src='https://i.imgur.com/GUmum4R.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+2. Demostration of change in locale currency <br/> <img src='https://i.imgur.com/ot82Spb.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
 
 GIF created with [ezgif.com](https://ezgif.com/video-to-gif).
 
